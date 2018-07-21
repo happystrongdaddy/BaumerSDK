@@ -21,7 +21,8 @@
 
 
 #include <afxdisp.h>        // MFC 自动化类
-
+#include <bgapi2_genicam.hpp>
+using namespace BGAPI2;
 
 
 #ifndef _AFX_NO_OLE_SUPPORT

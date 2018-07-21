@@ -64,6 +64,7 @@ BEGIN_MESSAGE_MAP(CBaumerSDKSetupDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BTN_INITIALIZE, &CBaumerSDKSetupDlg::OnBnClickedBtnInitialize)
 END_MESSAGE_MAP()
 
 
@@ -152,3 +153,25 @@ HCURSOR CBaumerSDKSetupDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CBaumerSDKSetupDlg::OnBnClickedBtnInitialize()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	try
+	{
+		m_pSystemList = SystemList::GetInstance();
+		m_pSystemList->Refresh();
+		//debug
+		int syscount = m_pSystemList->size();
+		int x = 0;
+	}
+	catch (BGAPI2::Exceptions::IException& ex)
+	{
+		//LPCTSTR pwch;
+
+		CString str1;
+		str1.Format(_T("ExceptionType:%s! ErrorDescription:%s in function:%s"), ex.GetType(), ex.GetErrorDescription(), ex.GetFunctionName());
+		MessageBox(str1);
+	}
+}
